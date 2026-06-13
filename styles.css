@@ -949,3 +949,131 @@ ul  { list-style: none; }
   .proj-metrics { gap: 12px; }
   .back-to-top { bottom: 20px; right: 16px; }
 }
+
+/* ══════════════════════════════════
+   SCROLL PROGRESS BAR
+══════════════════════════════════ */
+#scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--slate), var(--slate-lt), var(--gold));
+  z-index: 9999;
+  box-shadow: 0 0 10px rgba(123,184,212,.7);
+  transition: width .08s linear;
+}
+
+/* ══════════════════════════════════
+   CUSTOM CURSOR
+══════════════════════════════════ */
+.cursor, .cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  border-radius: 50%;
+  transition: opacity .3s;
+}
+.cursor {
+  width: 8px; height: 8px;
+  background: var(--slate);
+  box-shadow: 0 0 8px rgba(123,184,212,.8);
+}
+.cursor.expanded {
+  width: 12px; height: 12px;
+  background: var(--slate-lt);
+}
+.cursor-ring {
+  width: 36px; height: 36px;
+  border: 1.5px solid rgba(123,184,212,.45);
+}
+.cursor-ring.expanded {
+  width: 52px; height: 52px;
+  border-color: var(--slate);
+  background: rgba(123,184,212,.06);
+}
+
+@media (hover: none) {
+  .cursor, .cursor-ring { display: none; }
+  * { cursor: auto !important; }
+}
+
+/* ══════════════════════════════════
+   PARTICLE CANVAS
+══════════════════════════════════ */
+#particle-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .55;
+}
+
+/* ══════════════════════════════════
+   HERO NAME SHIMMER
+══════════════════════════════════ */
+.hero-name {
+  background: linear-gradient(110deg, var(--text) 20%, var(--slate-lt) 50%, var(--text) 80%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 5s linear infinite;
+}
+@keyframes shimmer {
+  0%   { background-position: 0% center; }
+  100% { background-position: 250% center; }
+}
+
+/* ══════════════════════════════════
+   TYPEWRITER CURSOR BLINK
+══════════════════════════════════ */
+.tw-cursor {
+  color: var(--slate);
+  font-style: normal;
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ══════════════════════════════════
+   BUTTON RIPPLE
+══════════════════════════════════ */
+.btn { position: relative; overflow: hidden; }
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,.22);
+  transform: scale(0);
+  animation: ripple-out .65s linear;
+  pointer-events: none;
+}
+@keyframes ripple-out {
+  to { transform: scale(2.8); opacity: 0; }
+}
+
+/* ══════════════════════════════════
+   CARD TILT — smooth return
+══════════════════════════════════ */
+.proj-card, .tl-card, .learn-card, .about-card {
+  will-change: transform;
+}
+
+/* ══════════════════════════════════
+   SECTION HEADER LINE REVEAL
+══════════════════════════════════ */
+.section-header::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--slate), transparent);
+  margin: 18px auto 0;
+  transition: width 1s ease;
+}
+.section-header.revealed::after { width: 200px; }

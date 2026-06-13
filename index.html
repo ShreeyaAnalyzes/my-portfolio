@@ -24,6 +24,11 @@
 </head>
 <body>
 
+  <!-- Scroll progress + custom cursor -->
+  <div id="scroll-progress"></div>
+  <div class="cursor"      id="cursor"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
   <!-- ── NAVBAR ── -->
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
@@ -44,12 +49,13 @@
 
   <!-- ── HERO ── -->
   <section class="hero" id="hero">
+    <canvas id="particle-canvas"></canvas>
     <div class="hero-glow-2"></div>
     <div class="hero-inner">
       <div class="hero-text fade-in">
         <p class="hero-greeting">Hello, I'm</p>
         <h1 class="hero-name">Shreeya Bhise</h1>
-        <h2 class="hero-tagline">Turning Data Into Decisions</h2>
+        <h2 class="hero-tagline"><span id="typewriter-text"></span><span class="tw-cursor">|</span></h2>
         <p class="hero-roles">Business Intelligence Analyst &nbsp;·&nbsp; ETL &amp; Data Modeling &nbsp;·&nbsp; Power BI &amp; SQL</p>
         <p class="hero-location"><i class="fas fa-map-marker-alt"></i> Dallas–Fort Worth, TX &nbsp;·&nbsp; Open Anywhere in the US &nbsp;|&nbsp; 7+ Years</p>
         <div class="hero-btns">
