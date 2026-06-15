@@ -565,7 +565,7 @@ ul  { list-style: none; }
 /* ── LEARNING ── */
 .learning-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 .learn-card {
@@ -994,9 +994,12 @@ ul  { list-style: none; }
   background: rgba(123,184,212,.06);
 }
 
+/* Custom cursor — only on pointer devices */
+body.has-custom-cursor,
+body.has-custom-cursor * { cursor: none !important; }
+
 @media (hover: none) {
-  .cursor, .cursor-ring { display: none; }
-  * { cursor: auto !important; }
+  .cursor, .cursor-ring { display: none !important; }
 }
 
 /* ══════════════════════════════════

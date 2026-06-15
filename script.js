@@ -32,16 +32,17 @@ backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 's
 const hamburger = document.getElementById('hamburger');
 const navMenu   = document.getElementById('nav-links');
 
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('open');
-  navMenu.classList.toggle('open');
-  document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : '';
-});
-navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+function closeMenu() {
   hamburger.classList.remove('open');
   navMenu.classList.remove('open');
   document.body.style.overflow = '';
-}));
+}
+hamburger.addEventListener('click', () => {
+  const isOpen = navMenu.classList.contains('open');
+  isOpen ? closeMenu() : (hamburger.classList.add('open'), navMenu.classList.add('open'), document.body.style.overflow = 'hidden');
+});
+navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 
 /* ══════════════════════════════
    SMOOTH SCROLL
@@ -63,7 +64,7 @@ const cursorRing = document.getElementById('cursor-ring');
 
 if (cursorDot && cursorRing && window.matchMedia('(hover: hover)').matches) {
   let mx = 0, my = 0, rx = 0, ry = 0;
-  document.body.style.cursor = 'none';
+  document.body.classList.add('has-custom-cursor');
 
   document.addEventListener('mousemove', e => {
     mx = e.clientX; my = e.clientY;
